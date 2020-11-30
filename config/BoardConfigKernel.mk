@@ -106,6 +106,16 @@ TARGET_KERNEL_CLANG_PATH ?= $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TA
 
 TARGET_KERNEL_RUST_VERSION ?= 1.73.0c
 
+# This uses the host xz through Android's path_interposer. Android's
+# path_interposer enable to run only selected host binaries. To do that the
+# previous PATH is saved in a file and then during the build it's not available
+# anymore. The path_interposer is then able to use that saved PATH to run a
+# given binary if the TEMPORARY_DISABLE_PATH_RESTRICTIONS environment variable
+# is set to true or if the binary to run is whitelisted by in a file like
+# build/soong/ui/build/paths/config.go. See the path_interposer source in
+# build/soong/cmd/path_interposer for more details).
+KERNEL_XZ := $(BUILD_TOP)/out/.path/xz
+
 ifneq ($(USE_CCACHE),)
     ifneq ($(CCACHE_EXEC),)
         # Android 10+ deprecates use of a build ccache. Only system installed ones are now allowed
