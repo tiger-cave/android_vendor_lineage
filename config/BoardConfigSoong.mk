@@ -23,6 +23,7 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlu
 $(call soong_config_set,lineageGlobalVars,target_process_sdk_version_override,$(TARGET_PROCESS_SDK_VERSION_OVERRIDE))
 $(call soong_config_set_bool,lineageGlobalVars,disable_postrender_cleanup,$(TARGET_DISABLE_POSTRENDER_CLEANUP))
 $(call soong_config_set_bool,lineageGlobalVars,has_memfd_backport,$(TARGET_HAS_MEMFD_BACKPORT))
+$(call soong_config_set_bool,lineageQcomVars,uses_qcom_bsp_legacy,$(TARGET_USES_QCOM_BSP_LEGACY))
 
 # Bootanimation
 TARGET_BOOTANIMATION_HALF_RES ?= false
