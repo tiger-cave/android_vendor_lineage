@@ -104,3 +104,22 @@ cc_library_headers {
     name: "prebuilt_kernel_headers",
     defaults: ["prebuilt_kernel_header_defaults"],
 }
+
+// Ultra-legacy device compatibility defaults. Keep these on the modern
+// soong_config_set path instead of restoring the removed global config table.
+soong_config_module_type {
+    name: "target_process_sdk_version_overrides",
+    module_type: "cc_defaults",
+    config_namespace: "lineageGlobalVars",
+    value_variables: ["target_process_sdk_version_override"],
+    properties: ["cppflags"],
+}
+
+target_process_sdk_version_overrides {
+    name: "process_sdk_version_overrides_defaults",
+    soong_config_variables: {
+        target_process_sdk_version_override: {
+            cppflags: ["-DSDK_VERSION_OVERRIDES=\"%s\""],
+        },
+    },
+}
