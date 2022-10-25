@@ -22,6 +22,9 @@ EXPORT_TO_SOONG := \
 $(call add_soong_config_namespace,lineageVarsPlugin)
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlugin,$(v))))
 
+# Ultra-legacy compatibility options consumed by defaults in build/soong.
+$(call soong_config_set,lineageGlobalVars,target_process_sdk_version_override,$(TARGET_PROCESS_SDK_VERSION_OVERRIDE))
+
 # Bootanimation
 TARGET_BOOTANIMATION_HALF_RES ?= false
 $(call soong_config_set,lineage_bootanimation,height,$(TARGET_SCREEN_HEIGHT))
