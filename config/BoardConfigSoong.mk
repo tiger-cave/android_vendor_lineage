@@ -25,6 +25,9 @@ $(call soong_config_set_bool,lineageGlobalVars,disable_postrender_cleanup,$(TARG
 $(call soong_config_set_bool,lineageGlobalVars,has_memfd_backport,$(TARGET_HAS_MEMFD_BACKPORT))
 $(call soong_config_set_bool,lineageQcomVars,uses_qcom_bsp_legacy,$(TARGET_USES_QCOM_BSP_LEGACY))
 
+TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY ?= libcamera_parameters
+$(call soong_config_set,lineageGlobalVars,uses_camera_parameter_lib,$(TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY))
+
 # Bootanimation
 TARGET_BOOTANIMATION_HALF_RES ?= false
 $(call soong_config_set,lineage_bootanimation,height,$(TARGET_SCREEN_HEIGHT))
